@@ -8,5 +8,5 @@
 1. fork本项目后再clone到本地修改
 2. 进入项目目录执行`npm i`安装依赖
 3. 执行`npm run dev`开始开发，根据你的情况修改`src/index.html`里的内容
-4. 替换`webpack-dist.config.js`文件里的`resume.wuhaolin.cn`为你自己的域名，并根据[该文档配置你的域名解析](https://help.github.com/cn/github/working-with-github-pages/about-custom-domains-and-github-pages)
+4. 替换`webpack-dist.config.js`文件里的`lianghuaibin.github.io`为你自己的域名，并根据[该文档配置你的域名解析](https://help.github.com/cn/github/working-with-github-pages/about-custom-domains-and-github-pages)
 5. 修改完后push到master分支，Github Action会自动部署
