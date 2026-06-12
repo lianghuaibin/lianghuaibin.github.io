@@ -17,8 +17,11 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
-        // 提取出css
-        loaders: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          { loader: 'sass-loader', options: { implementation: require('sass') } },
+        ],
         include: path.resolve(__dirname, 'src')
       },
       {

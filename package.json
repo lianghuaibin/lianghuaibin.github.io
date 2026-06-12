@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "webpack-dev-server --open",
+    "dev": "webpack-dev-server --open --port 8181",
     "build": "webpack --config webpack-dist.config.js -p"
   },
   "devDependencies": {
@@ -22,6 +22,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "2015": "0.0.1"
+    "2015": "0.0.1",
+    "sass": "^1.77.8"
   }
 }
