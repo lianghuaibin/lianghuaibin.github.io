@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "dev": "webpack-dev-server --open --port 8181",
-    "build": "webpack --config webpack-dist.config.js -p"
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider webpack-dev-server --open --port 8181",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider webpack --config webpack-dist.config.js -p"
   },
   "devDependencies": {
     "autoprefixer": "^9.8.0",
