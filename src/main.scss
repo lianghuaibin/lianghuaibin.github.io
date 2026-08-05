@@ -104,11 +104,6 @@ a {
   @media screen and (max-width: 720px) {
     padding: 25px 30px;
   }
-  @media print {
-    color: #000;
-    background-color: #fff;
-  }
-
   .title {
     width: 100%;
     border-bottom: 2px solid darken($color-green, 2%);
@@ -207,9 +202,6 @@ a {
 
         & > a {
           color: #fff;
-          @media print {
-            color: #000;
-          }
           font-family: "Lucida Grande", "Hiragino Sans GB", "Hiragino Sans GB W3", $font-family;
           font-size: 14px;
           line-height: 22px;
