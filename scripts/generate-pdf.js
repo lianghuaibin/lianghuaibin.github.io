@@ -1,4 +1,4 @@
-const { spawnSync } = require('child_process');
+const puppeteer = require('puppeteer-core');
 const path = require('path');
 const fs = require('fs');
 
@@ -20,20 +20,25 @@ function findChrome() {
   }
 }
 
-const chromePath = findChrome();
-const docsDir = path.resolve(__dirname, '../docs');
-const pdfPath = path.join(docsDir, 'lianghuaibin.pdf');
-const htmlPath = path.join(docsDir, 'index.html');
+async function main() {
+  const browser = await puppeteer.launch({
+    executablePath: findChrome(),
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+  });
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1200, height: 900 });
+  const htmlPath = path.resolve(__dirname, '../docs/index.html');
+  await page.goto(`file://${htmlPath}`, { waitUntil: 'networkidle0' });
+  await page.pdf({
+    path: path.resolve(__dirname, '../docs/lianghuaibin.pdf'),
+    format: 'A4',
+    printBackground: false,      // 不打印背景色，#eee 灰色消失
+    displayHeaderFooter: false,  // 不显示 Chrome 自带的日期/URL 页眉页脚
+    margin: { top: '10mm', right: '0', bottom: '10mm', left: '0' },
+  });
+  await browser.close();
+  console.log('Generated: docs/lianghuaibin.pdf');
+}
 
-const result = spawnSync(chromePath, [
-  '--headless',
-  '--disable-gpu',
-  '--no-sandbox',
-  '--disable-dev-shm-usage',
-  `--print-to-pdf=${pdfPath}`,
-  '--print-to-pdf-no-header',
-  `file://${htmlPath}`,
-], { stdio: 'inherit' });
-
-if (result.status !== 0) process.exit(result.status || 1);
-console.log(`Generated: ${pdfPath}`);
+main().catch(err => { console.error(err); process.exit(1); });
