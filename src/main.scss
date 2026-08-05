@@ -37,6 +37,9 @@ body {
   @media screen and (max-width: 1024px) {
     padding-top: 0;
   }
+  @media print {
+    background-color: #fff;
+  }
 }
 
 a {

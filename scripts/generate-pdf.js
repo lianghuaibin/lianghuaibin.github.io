@@ -33,7 +33,7 @@ async function main() {
   await page.pdf({
     path: path.resolve(__dirname, '../docs/lianghuaibin.pdf'),
     format: 'A4',
-    printBackground: false,      // 不打印背景色，#eee 灰色消失
+    printBackground: true,       // 保留背景色（section-title 等胶囊样式）
     displayHeaderFooter: false,  // 不显示 Chrome 自带的日期/URL 页眉页脚
     margin: { top: '10mm', right: '0', bottom: '10mm', left: '0' },
   });
